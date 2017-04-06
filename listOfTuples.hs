@@ -41,7 +41,7 @@ askLoop = do {
 			}
 		"3" -> do {
 			lift $ putStrLn "Ecco la tua lista di aforismi";
-			lift (print v); --come gestire la stampa di una^^^^^^^^^^^^^^  lista di tuple?
+			lift (print v); 
 			askLoop;
 			}
 		_ -> return()
