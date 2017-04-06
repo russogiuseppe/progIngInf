@@ -21,9 +21,6 @@ insert xs x = xs ++ [(length xs + 1 , x)]
 cancElement :: [(Int, String)] -> String -> StateMonad ()
 cancElement xs x = modify (\xs -> take ( (convert x) -1) xs ++ drop (convert x) xs)
 
-{-cancel :: [(Int,String)] -> Int -> [(Int,String)]
-cancel xs x = take (x-1) xs ++ drop x xs -}
-
 askLoop :: StateMonad () --si utilizza lift perché lift è un trasformatore da monade a monade. In questo caso lift serve per passare dalla monade di IO alla monade IO+State che è appunto StateMonad a.
 askLoop = do {
 	lift $ putStrLn "Scegli (1:Inserisci aforisma, 2:Scegli elemento da cancellare, 3:visualizza lista)";
@@ -53,9 +50,6 @@ askLoop = do {
 list :: [(Int, String)]
 list = [(1, "Ernesto"), (2, "Che"), (3, "Guevara")]
 
---Non mi è chiaro il risultato di lift(print v) e non penso funzioni in caso di lista di tuple come in questo caso
---Non mi è chiaro il valore di ritorno della funzione get. Di che tipo è? [(Int,String)] o StateMonad ()??
---cercando su hoogle ho visto che il valore di ritorno di get è del tipo RWST a m s edwdshsq arsbo
 
 main = do
 	runStateT askLoop list
